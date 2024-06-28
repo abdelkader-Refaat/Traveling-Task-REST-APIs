@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "415b81b4-3689-40dd-a485-cffc3ea18b0e",
+		"name": "travel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12062376",
+		"_collection_link": "https://galactic-star-229671.postman.co/workspace/Travel-APIs~1dd9b3d5-c7ba-40d1-b279-aec2656e1f81/collection/12062376-415b81b4-3689-40dd-a485-cffc3ea18b0e?action=share&source=collection_link&creator=12062376"
+	},
+	"item": [
+		{
+			"name": "get all travels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://travel-api.test/api/v1/travels",
+					"protocol": "http",
+					"host": [
+						"travel-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"travels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tours specified for slug travel with some conditions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://travel-api.test/api/v1/travels/quam-molestiae-et/tours?dateFrom=1994-03-01&dateTo=2026-03-01&priceFrom=100&priceTo=1500",
+					"protocol": "http",
+					"host": [
+						"travel-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"travels",
+						"quam-molestiae-et",
+						"tours"
+					],
+					"query": [
+						{
+							"key": "dateFrom",
+							"value": "1994-03-01"
+						},
+						{
+							"key": "dateTo",
+							"value": "2026-03-01"
+						},
+						{
+							"key": "priceFrom",
+							"value": "100"
+						},
+						{
+							"key": "priceTo",
+							"value": "1500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store travel to database",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|YQS0LtXT0TzwXxJHt9G2NFmsZSetztjr7N2SAJ3231eb2409",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://travel-api.test/api/v1/admin/travels?name=tarvel112233&description=bla bla bla&is_public=1&number_of_days=4",
+					"protocol": "http",
+					"host": [
+						"travel-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"travels"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "tarvel112233"
+						},
+						{
+							"key": "description",
+							"value": "bla bla bla"
+						},
+						{
+							"key": "is_public",
+							"value": "1"
+						},
+						{
+							"key": "number_of_days",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "store travel to database when role not admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://travel-api.test/api/v1/admin/travels?name=tarvel112233&description=bla bla bla&is_public=1&number_of_days=4",
+							"protocol": "http",
+							"host": [
+								"travel-api",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"travels"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "tarvel112233"
+								},
+								{
+									"key": "description",
+									"value": "bla bla bla"
+								},
+								{
+									"key": "is_public",
+									"value": "1"
+								},
+								{
+									"key": "number_of_days",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.25.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 28 Jun 2024 05:46:35 GMT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Forbidden\"\n}"
+				},
+				{
+					"name": "store travel to database when user has role admin  middleware",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://travel-api.test/api/v1/admin/travels?name=tarvel1454&description=bla bla bla&is_public=1&number_of_days=4",
+							"protocol": "http",
+							"host": [
+								"travel-api",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"travels"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "tarvel1454"
+								},
+								{
+									"key": "description",
+									"value": "bla bla bla"
+								},
+								{
+									"key": "is_public",
+									"value": "1"
+								},
+								{
+									"key": "number_of_days",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.25.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 28 Jun 2024 05:58:48 GMT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"ID\": 70,\n        \"name\": \"tarvel1454\",\n        \"is_public\": \"1\",\n        \"slug\": \"tarvel1454\",\n        \"description\": \"bla bla bla\",\n        \"number_of_days\": \"4\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "login with credentials",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://travel-api.test/api/v1/login?email=abdelkader@gmail.com&password=mnmnmnmn",
+					"protocol": "http",
+					"host": [
+						"travel-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "abdelkader@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "mnmnmnmn"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store tour for specified travel id ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|YQS0LtXT0TzwXxJHt9G2NFmsZSetztjr7N2SAJ3231eb2409",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://travel-api.test/api/v1/admin/travels/1/tours?name=tour 123&starting_date=2003-10-15&ending_date=2024-07-06&price=1000",
+					"protocol": "http",
+					"host": [
+						"travel-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"travels",
+						"1",
+						"tours"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "tour 123"
+						},
+						{
+							"key": "starting_date",
+							"value": "2003-10-15"
+						},
+						{
+							"key": "ending_date",
+							"value": "2024-07-06"
+						},
+						{
+							"key": "price",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updating specified travel id with role admin and access_token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|0Js73NOlHJwf9dXAS4ouoFgWBQyldwyUrASJjmJw75e6e0e5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_public",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "abdelkader",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "descriptiondescriptiondescription",
+							"type": "text"
+						},
+						{
+							"key": "number_of_days",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://travel-api.test/api/v1/admin/travels/1",
+					"protocol": "http",
+					"host": [
+						"travel-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"travels",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
