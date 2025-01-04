@@ -12,8 +12,7 @@ class TravelController extends Controller
     public function store(TravelRequest $request)
     {
         $travel = Travel::Create($request->validated());
-
-        return new TravelResource($travel);
+        return response()->json(['data' => new TravelResource($travel)]);
     }
 
     public function update(Travel $travel, TravelRequest $request)

@@ -26,6 +26,7 @@ class TourRequestStore extends FormRequest
             'starting_date' => ['required', 'date'],
             'ending_date' => ['required', 'date', 'after:starting_date'],
             'price' => ['required', 'numeric'],
+            'travel_id' => ['required' , 'numeric' , 'exists:travels,id']
         ];
     }
 }

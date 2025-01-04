@@ -11,8 +11,7 @@ class TourController extends Controller
 {
     public function store(Travel $travel, TourRequestStore $request)
     {
-
-        $tours = $travel->tours()->create($request->validated());
+        $tours = $travel->tours()->where('travel_id' , $request->travel_id)->create($request->validated());
 
         return new TourResource($tours);
 

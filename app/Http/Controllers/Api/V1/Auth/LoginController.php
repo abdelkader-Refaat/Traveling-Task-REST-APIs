@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function __invoke(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        if (! $user || (Hash::check($user->password, $request->password))) {
+        if (! $user || $user->password == $request->password) {
             return response()->json([
                 'error' => 'the provided credenials are invalid',
             ], 422);

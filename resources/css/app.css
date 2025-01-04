@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+nav a{
+    margin: 10px;
+        }
+nav a.active{
+    background-color: green;
+    color: white;
+}
+button.btn {
+    background-color: aquamarine;
+    color: red;
+    border-radius: 5px;
+    border-style: double;
+    text-shadow: 3cqh;
+    flex: content;
+
+
+
+}
+

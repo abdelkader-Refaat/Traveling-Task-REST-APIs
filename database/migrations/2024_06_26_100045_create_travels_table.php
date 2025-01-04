@@ -16,7 +16,7 @@ return new class extends Migration
             $table->boolean('is_public')->default(false);
             $table->string('slug')->unique();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->unsignedBigInteger('number_of_days');
             $table->timestamps();
         });

@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // Travel::factory()->count(16)->create();
-        // Tour::factory()->count(16)->create();
-        // User::factory(10)->create();
+        Travel::factory()->count(16)->create();
+        Tour::factory()->count(16)->create();
         $this->call(RoleSeeder::class);
+        // $this->call(PermissionSeeder::class);
+        $this->call(UserSeeder::class);
+        User::factory(10)->create();
+
 
         // User::factory()->create([
         //     'name' => 'Test User',
