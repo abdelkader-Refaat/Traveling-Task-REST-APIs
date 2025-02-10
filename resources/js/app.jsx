@@ -8,13 +8,9 @@ import App from './components/App';
 
 
 ReactDom.createRoot(document.getElementById('app')).render(
-
     <BrowserRouter>
         <App/>
     </BrowserRouter>
-
-
-
 
 )
 

@@ -3,6 +3,7 @@
 namespace Modules\Posts\Models;
 
 use App\Models\User;
+use Laravel\Scout\Searchable;
 use Abbasudo\Purity\Traits\Sortable;
 use Abbasudo\Purity\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory, Sluggable, Filterable, Sortable;
+    use HasFactory, Sluggable, Filterable, Sortable , Searchable;
+
 
 
     protected $table = 'posts';

@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\TourController;
 use App\Http\Controllers\Api\V1\TravelController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
+use Modules\Posts\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\Admin\TourController as AdminTourController;
 use App\Http\Controllers\Api\V1\Admin\TravelController as AdminTravelController;
 
@@ -21,6 +23,8 @@ Route::group(['prefix' => 'v1'], function () {
         return response()->json(['csrf_token' => csrf_token()]);
     });
 
+    // travel
+
     Route::get('travels/{travel:slug}/tours', [TourController::class, 'index']);
     Route::prefix('admin')
         ->middleware(['auth:sanctum', 'role:super_admin'])
@@ -31,4 +35,24 @@ Route::group(['prefix' => 'v1'], function () {
         });
     Route::get('tours', fn() => Tour::all())
         ->name('tours.index');
+
+    // start posts
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+
+        Route::get('posts', [PostController::class, 'index'])->middleware('auth:sanctum');
+    });
+    // end of posts
+
+
+    ############## start of payment  ################
+    Route::group([
+        'middleware' => 'auth:sanctum',
+        'prefix' => 'payment'
+    ], function () {
+        Route::post('process', [PaymentController::class, 'paymentProcess']);
+        Route::get('callback', [PaymentController::class, 'callBack']);
+    });
+
+    ############## end of payment  ################
+
 });

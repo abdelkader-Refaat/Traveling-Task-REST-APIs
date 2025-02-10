@@ -12,6 +12,7 @@
         "laravel/framework": "^11",
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
+        "laravel/scout": "^10.11",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
         "nwidart/laravel-modules": "^11.1",
@@ -44,7 +45,11 @@
             "Tests\\": "tests/",
             "Modules\\Posts\\Database\\Factories\\": "Modules/Posts/Database/Factories/"
 
-        }
+        },
+        "files": [
+            "App/Helpers/helper.php"
+
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

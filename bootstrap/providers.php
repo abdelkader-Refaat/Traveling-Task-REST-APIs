@@ -6,4 +6,5 @@ return [
     App\Providers\FolioServiceProvider::class,
     App\Providers\FortifyServiceProvider::class,
     App\Providers\JetstreamServiceProvider::class,
+    App\Providers\PaymentServiceProvider::class,
 ];

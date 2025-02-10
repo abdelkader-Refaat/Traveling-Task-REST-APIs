@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\TestController;
 use App\Mail\HelloWorld;
 use App\Mail\MailgunEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\Api\V1\PaymentController;
 
 Route::get('/', function () {
 
@@ -27,9 +28,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-Route::get('/test',TestController::class);//->middleware('auth:sanctum');
-Route::get('send-mail', function(){
+Route::get('/test', TestController::class);//->middleware('auth:sanctum');
+Route::get('send-mail', function () {
     Mail::to('abdelkaderrefaat@gmail.com')->send(new MailgunEmail('Hi there i am from mail provider of laravel'));
     return 'mail sent successfuly';
 });
 
+Route::view('payment-success', 'payment.payment-success')->name('payment.success');
+Route::view('payment-failed', 'payment.payment-failed')->name('payment.failed');
+Route::view('checkout', 'pay-form');
