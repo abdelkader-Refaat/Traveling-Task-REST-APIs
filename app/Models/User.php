@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Casts\EncryptCast;
+use Laravel\Scout\Searchable;
 use Modules\Posts\Models\Post;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
@@ -19,8 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class User extends Authenticatable
 {
 
-    use HasApiTokens, HasFactory , HasProfilePhoto , Notifiable ,
-         TwoFactorAuthenticatable ,HasRoles;
+    use Searchable, HasApiTokens, HasFactory, HasProfilePhoto, Notifiable,
+        TwoFactorAuthenticatable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +55,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
+    }
     protected static function booted()
     {
         static::creating(function ($user) {
@@ -75,11 +85,13 @@ class User extends Authenticatable
             'settings' => EncryptCast::class,
         ];
     }
-    public function roles() :BelongsToMany{
+    public function roles(): BelongsToMany
+    {
         return $this->belongsToMany(Role::class);
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 }

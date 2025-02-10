@@ -7,13 +7,15 @@ class Parenthesis
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(public string $value)
     {
         //
     }
 
-($value)
+    public function getValue(): string
     {
-        return $value;
+        return $this->value
+
     }
+
 }

@@ -2,17 +2,25 @@
 
 namespace Modules\Users\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('users::index');
+        $query = $request->input('query');
+
+        $users = User::when($query, function ($searchQuery) use ($query) {
+            return User::search($query)->get();
+        }, function () {
+            return User::all();
+        });
+        return view('users::index', compact('users'));
     }
 
     /**

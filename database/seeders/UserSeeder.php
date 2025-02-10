@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -13,28 +13,21 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::firstOrCreate([
-            'id' => 1,
-            'name' => 'abdelkader',
-            'email' => 'abdelkader@gmail.com',
-            'password' => 'mnmnmnmnmn',
-        ]);
-        $admin->assignRole('admin');
+        $this->createUser(1, 'abdelkader', 'abdelkader@gmail.com', 'admin');
+        $this->createUser(2, 'omar', 'omar@gmail.com', 'editor');
+        $this->createUser(3, 'amr', 'amr@gmail.com', 'user');
+    }
 
-        $editor = User::create([
-            'id' => 2,
-            'name' => 'omar',
-            'email' => 'omar@gmail.com',
-            'password' => 'mnmnmnmnmn',
-        ]);
-        $editor->assignRole('editor');
-
-        $user = User::create([
-            'id' => 3,
-            'name' => 'amr',
-            'email' => 'amr@gmail.com',
-            'password' => 'mnmnmnmnmn',
-        ]);
-        $editor->assignRole('user');
+    private function createUser(int $id, string $name, string $email, string $role): void
+    {
+        $user = User::updateOrCreate(
+            ['id' => $id],
+            [
+                'name' => $name,
+                'email' => $email,
+                'password' => 'mnmnmnmnmn',
+            ]
+        );
+        $user->assignRole($role);
     }
 }

@@ -5,6 +5,7 @@ use App\Mail\MailgunEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Api\V1\PaymentController;
 
 Route::get('/', function () {
@@ -29,6 +30,7 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::get('/test', TestController::class);//->middleware('auth:sanctum');
+Route::get('/search', SearchController::class);//->middleware('auth:sanctum');
 Route::get('send-mail', function () {
     Mail::to('abdelkaderrefaat@gmail.com')->send(new MailgunEmail('Hi there i am from mail provider of laravel'));
     return 'mail sent successfuly';

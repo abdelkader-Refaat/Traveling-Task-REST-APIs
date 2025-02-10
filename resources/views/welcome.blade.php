@@ -15,8 +15,12 @@
         @vite(['resources/css/app.css' , 'resources/js/app.jsx']) --}}
     </head>
     <body>
-        <div id="app">
+        <form method="GET" action="{{ route('users.index') }}">
+            <input type="text" name="query" placeholder="Search by name or email" value="{{ request('query') }}">
+            <button type="submit">Search</button>
+        </form>
 
-        </div>
+        
+
     </body>
 </html>

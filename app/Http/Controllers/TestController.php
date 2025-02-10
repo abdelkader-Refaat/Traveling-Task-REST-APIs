@@ -32,8 +32,7 @@ class TestController extends Controller
 
     public function __invoke(Request $request)
     {
-        return new Parenthesis()->name; 
-        // return new Parenthesis()->test(10);
+        return view('welcome');
     }
 
     //     //  return value by refrence .
